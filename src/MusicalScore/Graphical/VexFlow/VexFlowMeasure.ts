@@ -38,6 +38,7 @@ import { Arpeggio } from "../../VoiceData/Arpeggio";
 import { GraphicalTie } from "../GraphicalTie";
 import { Note } from "../../VoiceData/Note";
 import { TabNote } from "../../VoiceData/TabNote";
+import {GridStave} from "../../../VexFlowAddon/grid-stave";
 
 // type StemmableNote = VF.StemmableNote;
 
@@ -109,7 +110,7 @@ export class VexFlowMeasure extends GraphicalMeasure {
 
         // TODO save beginning and end bar type, set these again after new stave.
 
-        this.stave = new VF.Stave(0, 0, 0, {
+        this.stave = new GridStave(0, 0, 0, {
             fill_style: this.rules.StaffLineColor,
             space_above_staff_ln: 0,
             space_below_staff_ln: 0
@@ -1010,12 +1011,12 @@ export class VexFlowMeasure extends GraphicalMeasure {
                         }
                         if (stemColors.length >= 2 && this.rules.ColorBeams) {
                             beamColor = stemColors[0];
-                            for (const stemColor of stemColors) {
-                                if (stemColor !== beamColor) {
-                                    beamColor = undefined;
-                                    break;
-                                }
-                            }
+                            // for (const stemColor of stemColors) {
+                            //     if (stemColor !== beamColor) {
+                            //         beamColor = undefined;
+                            //         break;
+                            //     }
+                            // }
                             vfBeam.setStyle({ fillStyle: beamColor, strokeStyle: beamColor });
                         }
                         if (this.rules.FlatBeams) {

@@ -67,6 +67,7 @@ import { CollectionUtil } from "../../../Util/CollectionUtil";
 import { GraphicalGlissando } from "../GraphicalGlissando";
 import { Glissando } from "../../VoiceData/Glissando";
 import { VexFlowGlissando } from "./VexFlowGlissando";
+import {GridFormatter} from "../../../VexFlowAddon/grid-formatter";
 
 export class VexFlowMusicSheetCalculator extends MusicSheetCalculator {
   /** space needed for a dash for lyrics spacing, calculated once */
@@ -157,7 +158,7 @@ export class VexFlowMusicSheetCalculator extends MusicSheetCalculator {
 
     // Format the voices
     const allVoices: VF.Voice[] = [];
-    const formatter: VF.Formatter = new VF.Formatter({
+    const formatter: VF.Formatter = new GridFormatter({
       // maxIterations: 2,
       softmaxFactor: this.rules.SoftmaxFactorVexFlow // this setting is only applied in Vexflow 3.x. also this needs @types/vexflow ^3.0.0
     });

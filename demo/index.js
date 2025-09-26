@@ -10,6 +10,7 @@ import { TransposeCalculator } from '../src/Plugins/Transpose/TransposeCalculato
     var openSheetMusicDisplay;
     var sampleFolder = "",
         samples = {
+            "OSMD Function Test - Auto-/Custom-Coloring": "OSMD_function_test_auto-custom-coloring-entchen.musicxml",
             "Beethoven, L.v. - An die ferne Geliebte": "Beethoven_AnDieFerneGeliebte.xml",
             "Clementi, M. - Sonatina Op.36 No.1 Pt.1": "MuzioClementi_SonatinaOpus36No1_Part1.xml",
             "Clementi, M. - Sonatina Op.36 No.1 Pt.2": "MuzioClementi_SonatinaOpus36No1_Part2.xml",
@@ -29,7 +30,6 @@ import { TransposeCalculator } from '../src/Plugins/Transpose/TransposeCalculato
             "OSMD Function Test - All": "OSMD_function_test_all.xml",
             "OSMD Function Test - Accidentals": "OSMD_function_test_accidentals.musicxml",
             "OSMD Function Test - Autobeam": "OSMD_function_test_autobeam.musicxml",
-            "OSMD Function Test - Auto-/Custom-Coloring": "OSMD_function_test_auto-custom-coloring-entchen.musicxml",
             "OSMD Function Test - Bar lines": "OSMD_function_test_bar_lines.musicxml",
             "OSMD Function Test - Chord Symbols": "OSMD_function_test_chord_symbols.musicxml",
             "OSMD Function Test - Chord Spacing": "OSMD_function_test_chord_spacing.mxl",
@@ -530,7 +530,7 @@ import { TransposeCalculator } from '../src/Plugins/Transpose/TransposeCalculato
             //cursorsOptions: [{type: 3, color: "#2bb8cd", alpha: 0.6, follow: true}], // highlight current measure instead of just a small vertical bar over approximate notes
             disableCursor: false,
             drawingParameters: compactMode ? "compact" : "default", // try compact (instead of default)
-            drawPartNames: true, // try false
+            drawPartNames: false, // try false
             // drawTitle: false,
             // drawSubtitle: false,
             drawFingerings: true,
@@ -560,12 +560,15 @@ import { TransposeCalculator } from '../src/Plugins/Transpose/TransposeCalculato
             },
             pageFormat: pageFormat,
             pageBackgroundColor: pageBackgroundColor,
-            renderSingleHorizontalStaffline: singleHorizontalStaffline
+            renderSingleHorizontalStaffline: singleHorizontalStaffline,
 
             // tupletsBracketed: true, // creates brackets for all tuplets except triplets, even when not set by xml
             // tripletsBracketed: true,
             // tupletsRatioed: true, // unconventional; renders ratios for tuplets (3:2 instead of 3 for triplets)
         });
+        openSheetMusicDisplay.EngravingRules.RenderClefsAtBeginningOfStaffline = false;
+        openSheetMusicDisplay.EngravingRules.RenderKeySignatures = false;
+        openSheetMusicDisplay.EngravingRules.RenderTimeSignatures = false;
         if (portrait) {
             // reduce title labels/text size etc. as well. E.g. for Mozart string quartet, title wouldn't fit line width otherwise
             openSheetMusicDisplay.EngravingRules.SheetTitleHeight *= 0.7; // see Mozart String Quartet
@@ -840,7 +843,7 @@ import { TransposeCalculator } from '../src/Plugins/Transpose/TransposeCalculato
             //openSheetMusicDisplay.setOptions({coloringMode: 1}); // Auto-Coloring with pre-defined colors
             openSheetMusicDisplay.setOptions({
                 coloringMode: 2, // custom coloring set. 0 would be XML, 1 autocoloring
-                coloringSetCustom: ["#d82c6b", "#F89D15", "#FFE21A", "#4dbd5c", "#009D96", "#43469d", "#76429c", "#ff0000"],
+                coloringSetCustom: ["#d82c6b", "#F89D15", "#FFE21A", "#4dbd5c", "#009D96", "#43469d", "#76429c", "#000000"],
                 // last color value of coloringSetCustom is for rest notes
                 colorStemsLikeNoteheads: true
             });
